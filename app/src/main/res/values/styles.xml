@@ -1,0 +1,118 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="start_end_buttons">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTextWhite</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="scoreButtonsOrangeTeamA">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/margins_padding_default</item>
+        <item name="android:textColor">@color/colorTextOrange</item>
+        <item name="android:background">@drawable/score_buttons</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="scoreButtonsOrangeTeamB">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingRight">@dimen/margins_padding_default</item>
+        <item name="android:textColor">@color/colorTextOrange</item>
+        <item name="android:background">@drawable/score_buttons</item>
+        <item name="android:gravity">right|center_vertical</item>
+    </style>
+
+    <style name="scoreButtonsWhiteTeamA">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/margins_padding_default</item>
+        <item name="android:textColor">@color/colorTextWhite</item>
+        <item name="android:background">@drawable/score_buttons</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="scoreButtonsWhiteTeamB">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingRight">@dimen/margins_padding_default</item>
+        <item name="android:textColor">@color/colorTextWhite</item>
+        <item name="android:background">@drawable/score_buttons</item>
+        <item name="android:gravity">right|center_vertical</item>
+    </style>
+
+    <style name="statusText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/margins_padding_default</item>
+        <item name="android:layout_marginTop">@dimen/margins_padding_default</item>
+        <item name="android:background">@drawable/reset_button</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingBottom">@dimen/margins_padding_default</item>
+        <item name="android:paddingTop">@dimen/margins_padding_default</item>
+        <item name="android:textColor">@color/colorTextWhite</item>
+        <item name="android:textSize">@dimen/status_text_size</item>
+    </style>
+
+    <style name="scoreButtonsLayout">
+        <item name="android:layout_width">@dimen/weight_null_size</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/margins_padding_default</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawableLeft">@drawable/ic_logo_2015_1</item>
+        <item name="android:padding">@dimen/margins_padding_default</item>
+        <item name="android:textColor">@color/colorTextWhite</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/score_buttons</item>
+    </style>
+
+    <style name="scoreText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingLeft">@dimen/margins_padding_default</item>
+        <item name="android:paddingRight">@dimen/margins_padding_default</item>
+        <item name="android:textColor">@color/colorTextWhite</item>
+        <item name="android:textSize">@dimen/score_text_size</item>
+    </style>
+
+    <style name="scoreDetailes">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTextWhite</item>
+    </style>
+
+    <style name="resetButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTextWhite</item>
+        <item name="android:paddingRight">@dimen/reset_button_paddings</item>
+        <item name="android:paddingLeft">@dimen/reset_button_paddings</item>
+        <item name="android:layout_margin">@dimen/margins_padding_default</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@drawable/reset_button</item>
+    </style>
+
+    <style name="teamName">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorTextWhite</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">@dimen/line_text_dim</item>
+    </style>
+</resources>

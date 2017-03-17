@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Oina Score Counter</string>
+    <string name="out_button">Out</string>
+    <string name="sh_button">Short Hit</string>
+    <string name="lh_button">Long Hit</string>
+    <string name="hr_button">Home Run</string>
+    <string name="adv_tch_button">Adv Touch</string>
+    <string name="reset_button">Reset</string>
+    <string name="game_status_text">Let the game begin!</string>
+    <string name="title_bar">Romanian Oina Federation</string>
+    <string name="team_A_name">Team A</string>
+    <string name="team_B_name">Team B</string>
+    <string name="start_button">Start</string>
+    <string name="end_button">End</string>
+    <string name="line">-</string>
+    <string name="out_detailes_left">Faults 0</string>
+    <string name="sh_detailes_left">Short Hits 0</string>
+    <string name="lh_detailes_left">Long Hits 0</string>
+    <string name="hr_detailes_left">Home Runs 0</string>
+    <string name="adv_tch_detailes_left">Adv touch 0</string>
+    <string name="out_detailes_right">0 Faults</string>
+    <string name="sh_detailes_right">0 Short Hits</string>
+    <string name="lh_detailes_right">0 Long Hits</string>
+    <string name="hr_detailes_right">0 Home Runs</string>
+    <string name="adv_tch_detailes_right">0 Adv touch</string>
+    <string name="zero">0</string>
+</resources>

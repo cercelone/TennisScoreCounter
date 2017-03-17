@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/oina_background"
+    tools:context="com.example.android.tennisscorecounter.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/title"
+            android:text="@string/title_bar" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorGreenBackground"
+            android:padding="@dimen/margins_padding_default">
+
+            <Button
+                android:id="@+id/startButton"
+                style="@style/start_end_buttons"
+                android:onClick="startChronometer"
+                android:text="@string/start_button" />
+
+            <Chronometer
+                android:id="@+id/chronometer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/colorTextWhite"
+                android:visibility="visible" />
+
+            <Button
+                style="@style/start_end_buttons"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:onClick="stopChronometer"
+                android:text="@string/end_button" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="@dimen/weight_null_size"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/teamName"
+                    android:text="@string/team_A_name" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/scoreTeamA"
+                        style="@style/scoreText"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:text="@string/zero" />
+
+                    <TextView
+                        android:id="@+id/out_score_A"
+                        style="@style/scoreDetailes"
+                        android:layout_toLeftOf="@id/scoreTeamA"
+                        android:layout_toStartOf="@id/scoreTeamA"
+                        android:text="@string/out_detailes_left" />
+
+                    <TextView
+                        android:id="@+id/sh_score_A"
+                        style="@style/scoreDetailes"
+                        android:layout_below="@id/out_score_A"
+                        android:layout_toLeftOf="@id/scoreTeamA"
+                        android:layout_toStartOf="@id/scoreTeamA"
+                        android:text="@string/sh_detailes_left" />
+
+                    <TextView
+                        android:id="@+id/lh_score_A"
+                        style="@style/scoreDetailes"
+                        android:layout_below="@id/sh_score_A"
+                        android:layout_toLeftOf="@id/scoreTeamA"
+                        android:layout_toStartOf="@id/scoreTeamA"
+                        android:text="@string/lh_detailes_left" />
+
+                    <TextView
+                        android:id="@+id/hr_score_A"
+                        style="@style/scoreDetailes"
+                        android:layout_below="@id/lh_score_A"
+                        android:layout_toLeftOf="@id/scoreTeamA"
+                        android:layout_toStartOf="@id/scoreTeamA"
+                        android:text="@string/hr_detailes_left" />
+
+                    <TextView
+                        android:id="@+id/tch_score_A"
+                        style="@style/scoreDetailes"
+                        android:layout_below="@id/hr_score_A"
+                        android:layout_toLeftOf="@id/scoreTeamA"
+                        android:layout_toStartOf="@id/scoreTeamA"
+                        android:text="@string/adv_tch_detailes_left" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="top"
+                android:text="@string/line"
+                android:textColor="@color/colorTextWhite"
+                android:textSize="@dimen/line_text_dim" />
+
+            <LinearLayout
+                android:layout_width="@dimen/weight_null_size"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/teamName"
+                    android:text="@string/team_B_name" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/scoreTeamB"
+                        style="@style/scoreText"
+                        android:text="@string/zero" />
+
+                    <TextView
+                        android:id="@+id/out_score_B"
+                        style="@style/scoreDetailes"
+                        android:layout_toEndOf="@id/scoreTeamB"
+                        android:layout_toRightOf="@id/scoreTeamB"
+                        android:text="@string/out_detailes_right" />
+
+                    <TextView
+                        android:id="@+id/sh_score_B"
+                        style="@style/scoreDetailes"
+                        android:layout_below="@id/out_score_B"
+                        android:layout_toEndOf="@id/scoreTeamB"
+                        android:layout_toRightOf="@id/scoreTeamB"
+                        android:text="@string/sh_detailes_right" />
+
+                    <TextView
+                        android:id="@+id/lh_score_B"
+                        style="@style/scoreDetailes"
+                        android:layout_below="@id/sh_score_B"
+                        android:layout_toEndOf="@id/scoreTeamB"
+                        android:layout_toRightOf="@id/scoreTeamB"
+                        android:text="@string/lh_detailes_right" />
+
+                    <TextView
+                        android:id="@+id/hr_score_B"
+                        style="@style/scoreDetailes"
+                        android:layout_below="@id/lh_score_B"
+                        android:layout_toEndOf="@id/scoreTeamB"
+                        android:layout_toRightOf="@id/scoreTeamB"
+                        android:text="@string/hr_detailes_right" />
+
+                    <TextView
+                        android:id="@+id/tch_score_B"
+                        style="@style/scoreDetailes"
+                        android:layout_below="@id/hr_score_B"
+                        android:layout_toEndOf="@id/scoreTeamB"
+                        android:layout_toRightOf="@id/scoreTeamB"
+                        android:text="@string/adv_tch_detailes_right" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/scoreStatus"
+            style="@style/statusText"
+            android:text="@string/game_status_text" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingEnd="@dimen/margins_padding_default"
+            android:paddingRight="@dimen/margins_padding_default">
+
+            <LinearLayout
+                style="@style/scoreButtonsLayout"
+                android:orientation="vertical">
+
+                <Button
+                    style="@style/scoreButtonsOrangeTeamA"
+                    android:onClick="outTeamA"
+                    android:text="@string/out_button" />
+
+                <Button
+                    style="@style/scoreButtonsWhiteTeamA"
+                    android:onClick="shortHitTeamA"
+                    android:text="@string/sh_button" />
+
+                <Button
+                    style="@style/scoreButtonsOrangeTeamA"
+                    android:onClick="longHitTeamA"
+                    android:text="@string/lh_button" />
+
+                <Button
+                    style="@style/scoreButtonsWhiteTeamA"
+                    android:onClick="homeRunTeamA"
+                    android:text="@string/hr_button" />
+
+                <Button
+                    style="@style/scoreButtonsOrangeTeamA"
+                    android:onClick="advTouchTeamA"
+                    android:text="@string/adv_tch_button" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/scoreButtonsLayout"
+                android:orientation="vertical">
+
+
+                <Button
+                    style="@style/scoreButtonsOrangeTeamB"
+                    android:onClick="outTeamB"
+                    android:text="@string/out_button" />
+
+                <Button
+                    style="@style/scoreButtonsWhiteTeamB"
+                    android:onClick="shortHitTeamB"
+                    android:text="@string/sh_button" />
+
+                <Button
+                    style="@style/scoreButtonsOrangeTeamB"
+                    android:onClick="longHitTeamB"
+                    android:text="@string/lh_button" />
+
+                <Button
+                    style="@style/scoreButtonsWhiteTeamB"
+                    android:onClick="homeRunTeamB"
+                    android:text="@string/hr_button" />
+
+                <Button
+                    style="@style/scoreButtonsOrangeTeamB"
+                    android:onClick="advTouchTeamB"
+                    android:text="@string/adv_tch_button" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            style="@style/resetButton"
+            android:onClick="reset"
+            android:text="@string/reset_button" />
+    </LinearLayout>
+</ScrollView>
