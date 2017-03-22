@@ -25,7 +25,7 @@
             <Button
                 android:id="@+id/startButton"
                 style="@style/start_end_buttons"
-                android:onClick="startChronometer"
+                android:onClick="startGame"
                 android:text="@string/start_button" />
 
             <Chronometer
@@ -40,7 +40,7 @@
                 style="@style/start_end_buttons"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:onClick="stopChronometer"
+                android:onClick="stopGame"
                 android:text="@string/end_button" />
         </RelativeLayout>
 
@@ -55,9 +55,10 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
+                <EditText
+                    android:id="@+id/nameTeamA"
                     style="@style/teamName"
-                    android:text="@string/team_A_name" />
+                    android:hint="@string/team_A_name" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -125,9 +126,10 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
+                <EditText
+                    android:id="@+id/nameTeamB"
                     style="@style/teamName"
-                    android:text="@string/team_B_name" />
+                    android:hint="@string/team_B_name" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"

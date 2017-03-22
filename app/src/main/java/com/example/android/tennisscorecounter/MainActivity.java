@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -28,8 +29,28 @@ public class MainActivity extends AppCompatActivity {
     String score;
     Chronometer gameTime;
     Button start;
+    EditText nameOfTeamA;
+    EditText nameOfTeamB;
+    TextView textScoreTeamA;
+    TextView textScoreTeamB;
+    Boolean isNameDisabled = false;
 
-    //Sets Score for Team A
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        gameTime = (Chronometer) findViewById(R.id.chronometer);
+        start = (Button) findViewById(R.id.startButton);
+
+        nameOfTeamA = (EditText) findViewById(R.id.nameTeamA);
+        nameOfTeamB = (EditText) findViewById(R.id.nameTeamB);
+
+        textScoreTeamA = (TextView) findViewById(R.id.scoreTeamA);
+        textScoreTeamB = (TextView) findViewById(R.id.scoreTeamB);
+    }
+
+    //Next methods Sets Score for Team A
     public void outTeamA(View view) {
         scoreOutA = scoreOutA + 1;
         displayScoreOutA(scoreOutA);
@@ -66,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         scoreStatus();
     }
 
-//Sets Score for Team B
+//Next methods sets Score for Team B
 
     public void outTeamB(View view) {
         scoreOutB = scoreOutB + 1;
@@ -104,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         scoreStatus();
     }
 
-    //Resets the score
+    //This method resets the score
     public void reset(View view) {
         scoreTeamA = 0;
         scoreTeamB = 0;
@@ -136,8 +157,15 @@ public class MainActivity extends AppCompatActivity {
         gameTime.stop();
 
         start.setEnabled(true);
+
+        nameOfTeamA.setEnabled(true);
+        nameOfTeamB.setEnabled(true);
     }
 
+    /**
+     * This method displays, under the score, a message about the score status
+     * Who is leading, if the teams are tied.
+     */
     private void scoreStatus() {
         if (scoreTeamA > scoreTeamB) {
             score = "Team A is leading.";
@@ -153,6 +181,11 @@ public class MainActivity extends AppCompatActivity {
             showScoreStatus(score);
         }
     }
+
+    /**
+     * This method displays, under the score, a message about the finl score status
+     * Who is the winner or  if the teams are tied.
+     */
 
     private void finalStatus() {
         if (scoreTeamA > scoreTeamB) {
@@ -170,15 +203,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        gameTime = (Chronometer) findViewById(R.id.chronometer);
-        start = (Button) findViewById(R.id.startButton);
-    }
-
+    //this method saves current state, in case of screen rotation
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -196,6 +221,7 @@ public class MainActivity extends AppCompatActivity {
         outState.putInt("advTchB", advTouchTeamB);
 //saves the current Chronometer time
         outState.putLong("currentChronometer", gameTime.getBase() - SystemClock.elapsedRealtime());
+        outState.putBoolean("teamNameDisabled", isNameDisabled);
     }
 
     @Override
@@ -218,6 +244,13 @@ public class MainActivity extends AppCompatActivity {
         gameTime.setBase(SystemClock.elapsedRealtime() + currentChronometer);
         gameTime.start();
 
+        isNameDisabled = savedInstanceState.getBoolean("teamNameDisabled");
+
+        if (isNameDisabled) {
+            nameOfTeamA.setEnabled(false);
+            nameOfTeamB.setEnabled(false);
+        }
+
         displayScoreTeamA(scoreTeamA);
         displayScoreTeamB(scoreTeamB);
         displayScoreOutA(scoreOutA);
@@ -233,10 +266,9 @@ public class MainActivity extends AppCompatActivity {
         scoreStatus();
     }
 
-    //Displays score for Team A
+    //Next methods display score for Team A
     private void displayScoreTeamA(int scoreA) {
-        TextView scoreView = (TextView) findViewById(R.id.scoreTeamA);
-        scoreView.setText(String.valueOf(scoreA));
+        textScoreTeamA.setText(String.valueOf(scoreA));
     }
 
     private void displayScoreOutA(int scoreOutA) {
@@ -264,10 +296,9 @@ public class MainActivity extends AppCompatActivity {
         scoreView.setText("Adv touch ".concat(String.valueOf(tchAdvA)));
     }
 
-    //Displays score for Team B
+    //Next methods display score for Team B
     private void displayScoreTeamB(int scoreB) {
-        TextView scoreView = (TextView) findViewById(R.id.scoreTeamB);
-        scoreView.setText(String.valueOf(scoreB));
+        textScoreTeamB.setText(String.valueOf(scoreB));
     }
 
     private void displayScoreOutB(int scoreOutB) {
@@ -300,18 +331,26 @@ public class MainActivity extends AppCompatActivity {
         scoreStatus.setText(score);
     }
 
-    //starts Chronometer when the START button is pressed
-    public void startChronometer(View view) {
+    /**
+     * starts Chronometer when the START button is pressed
+     * sets the two edit views that contains the teams name enable
+     */
+    public void startGame(View view) {
         gameTime.setBase(SystemClock.elapsedRealtime());
         gameTime.start();
+
+        nameOfTeamA.setEnabled(false);
+        nameOfTeamB.setEnabled(false);
+        isNameDisabled = true;
     }
 
     /**
-     * stops Chronometer when the START button is pressed
+     * stops Chronometer when the END button is pressed
      * displays on status bar the team that won
      * sets the start button inactive
+     * sets the score buttons inactive
      */
-    public void stopChronometer(View view) {
+    public void stopGame(View view) {
         gameTime.stop();
         finalStatus();
         start.setEnabled(false);
