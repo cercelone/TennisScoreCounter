@@ -168,11 +168,11 @@ public class MainActivity extends AppCompatActivity {
      */
     private void scoreStatus() {
         if (scoreTeamA > scoreTeamB) {
-            score = "Team A is leading.";
+            score = nameOfTeamA.getText().toString() + " is leading.";
             showScoreStatus(score);
         }
         if (scoreTeamA < scoreTeamB) {
-            score = "Team B is leading.";
+            score = nameOfTeamB.getText().toString() + " is leading.";
             showScoreStatus(score);
         }
 
@@ -189,11 +189,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void finalStatus() {
         if (scoreTeamA > scoreTeamB) {
-            score = "Team A is the Winner.";
+            score = nameOfTeamA.getText().toString() + " is the Winner.";
             showScoreStatus(score);
         }
         if (scoreTeamA < scoreTeamB) {
-            score = "Team B is the Winner.";
+            score = nameOfTeamB.getText().toString() + " is the Winner.";
             showScoreStatus(score);
         }
 
