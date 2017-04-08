@@ -9,8 +9,6 @@ import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 public class MainActivity extends AppCompatActivity {
 
     int scoreTeamA = 0;
@@ -29,6 +27,16 @@ public class MainActivity extends AppCompatActivity {
     String score;
     Chronometer gameTime;
     Button start;
+    Button out_a;
+    Button short_hit_a;
+    Button long_hit_a;
+    Button home_run_a;
+    Button adv_tch_a;
+    Button out_b;
+    Button short_hit_b;
+    Button long_hit_b;
+    Button home_run_b;
+    Button adv_tch_b;
     EditText nameOfTeamA;
     EditText nameOfTeamB;
     TextView textScoreTeamA;
@@ -42,6 +50,16 @@ public class MainActivity extends AppCompatActivity {
 
         gameTime = (Chronometer) findViewById(R.id.chronometer);
         start = (Button) findViewById(R.id.startButton);
+        out_a = (Button) findViewById(R.id.out_A_button);
+        short_hit_a = (Button) findViewById(R.id.short_hit_A_button);
+        long_hit_a = (Button) findViewById(R.id.long_hit_A_button);
+        home_run_a = (Button) findViewById(R.id.home_run_A_button);
+        adv_tch_a = (Button) findViewById(R.id.adv_tch_A_button);
+        out_b = (Button) findViewById(R.id.out_B_button);
+        short_hit_b = (Button) findViewById(R.id.short_hit_B_button);
+        long_hit_b = (Button) findViewById(R.id.long_hit_B_button);
+        home_run_b = (Button) findViewById(R.id.home_run_B_button);
+        adv_tch_b = (Button) findViewById(R.id.adv_tch_B_button);
 
         nameOfTeamA = (EditText) findViewById(R.id.nameTeamA);
         nameOfTeamB = (EditText) findViewById(R.id.nameTeamB);
@@ -183,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This method displays, under the score, a message about the finl score status
+     * This method displays, under the score, a message about the final score status
      * Who is the winner or  if the teams are tied.
      */
 
@@ -354,5 +372,15 @@ public class MainActivity extends AppCompatActivity {
         gameTime.stop();
         finalStatus();
         start.setEnabled(false);
+        out_a.setEnabled(false);
+        short_hit_a.setEnabled(false);
+        long_hit_a.setEnabled(false);
+        home_run_a.setEnabled(false);
+        adv_tch_a.setEnabled(false);
+        out_b.setEnabled(false);
+        short_hit_b.setEnabled(false);
+        long_hit_b.setEnabled(false);
+        home_run_b.setEnabled(false);
+        adv_tch_b.setEnabled(false);
     }
 }
