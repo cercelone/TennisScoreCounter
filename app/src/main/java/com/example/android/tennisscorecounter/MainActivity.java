@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textScoreTeamA;
     TextView textScoreTeamB;
     Boolean isNameDisabled = false;
+    Boolean isGameStoped = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -240,6 +241,7 @@ public class MainActivity extends AppCompatActivity {
 //saves the current Chronometer time
         outState.putLong("currentChronometer", gameTime.getBase() - SystemClock.elapsedRealtime());
         outState.putBoolean("teamNameDisabled", isNameDisabled);
+        outState.putBoolean("gameStoped", isGameStoped);
     }
 
     @Override
@@ -257,16 +259,24 @@ public class MainActivity extends AppCompatActivity {
         homeRunB = savedInstanceState.getInt("homeRunB");
         advTouchTeamA = savedInstanceState.getInt("advTchA");
         advTouchTeamB = savedInstanceState.getInt("advTchB");
-//resume the chronometer
-        currentChronometer = savedInstanceState.getLong("currentChronometer");
-        gameTime.setBase(SystemClock.elapsedRealtime() + currentChronometer);
-        gameTime.start();
 
         isNameDisabled = savedInstanceState.getBoolean("teamNameDisabled");
+        isGameStoped = savedInstanceState.getBoolean("gameStoped");
 
         if (isNameDisabled) {
             nameOfTeamA.setEnabled(false);
             nameOfTeamB.setEnabled(false);
+        }
+//resume the chronometer
+        currentChronometer = savedInstanceState.getLong("currentChronometer");
+        gameTime.setBase(SystemClock.elapsedRealtime() + currentChronometer);
+
+        if (!isGameStoped) {
+                gameTime.start();
+            }
+        else {
+            gameTime.setEnabled(false);
+            setButtonsDisable();
         }
 
         displayScoreTeamA(scoreTeamA);
@@ -362,15 +372,7 @@ public class MainActivity extends AppCompatActivity {
         isNameDisabled = true;
     }
 
-    /**
-     * stops Chronometer when the END button is pressed
-     * displays on status bar the team that won
-     * sets the start button inactive
-     * sets the score buttons inactive
-     */
-    public void stopGame(View view) {
-        gameTime.stop();
-        finalStatus();
+    private void setButtonsDisable(){
         start.setEnabled(false);
         out_a.setEnabled(false);
         short_hit_a.setEnabled(false);
@@ -382,5 +384,16 @@ public class MainActivity extends AppCompatActivity {
         long_hit_b.setEnabled(false);
         home_run_b.setEnabled(false);
         adv_tch_b.setEnabled(false);
+    }
+    /**
+     * stops Chronometer when the END button is pressed
+     * displays on status bar the team that won
+     * sets the buttons inactive
+     */
+    public void stopGame(View view) {
+        gameTime.stop();
+        finalStatus();
+        setButtonsDisable();
+        isGameStoped = true;
     }
 }
