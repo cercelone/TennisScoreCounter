@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textScoreTeamA;
     TextView textScoreTeamB;
     Boolean isNameDisabled = false;
-    Boolean isGameStoped = false;
+    Boolean isGameStopped = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
 
         textScoreTeamA = (TextView) findViewById(R.id.scoreTeamA);
         textScoreTeamB = (TextView) findViewById(R.id.scoreTeamB);
+
+        disableScoreButtons();
     }
 
     //Next methods Sets Score for Team A
@@ -250,7 +252,7 @@ public class MainActivity extends AppCompatActivity {
 //saves the current Chronometer time
         outState.putLong("currentChronometer", gameTime.getBase() - SystemClock.elapsedRealtime());
         outState.putBoolean("teamNameDisabled", isNameDisabled);
-        outState.putBoolean("gameStoped", isGameStoped);
+        outState.putBoolean("gameStoped", isGameStopped);
     }
 
     @Override
@@ -270,7 +272,7 @@ public class MainActivity extends AppCompatActivity {
         advTouchTeamB = savedInstanceState.getInt("advTchB");
 
         isNameDisabled = savedInstanceState.getBoolean("teamNameDisabled");
-        isGameStoped = savedInstanceState.getBoolean("gameStoped");
+        isGameStopped = savedInstanceState.getBoolean("gameStoped");
 
         if (isNameDisabled) {
             nameOfTeamA.setEnabled(false);
@@ -280,11 +282,11 @@ public class MainActivity extends AppCompatActivity {
         currentChronometer = savedInstanceState.getLong("currentChronometer");
         gameTime.setBase(SystemClock.elapsedRealtime() + currentChronometer);
 
-        if (!isGameStoped) {
+        if (!isGameStopped) {
             gameTime.start();
         } else {
             gameTime.setEnabled(false);
-            setButtonsDisable();
+            disableScoreButtons();
         }
 
         displayScoreTeamA(scoreTeamA);
@@ -369,7 +371,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * starts Chronometer when the START button is pressed
-     * sets the two edit views that contains the teams name enable
+     * sets the two edit views that contains the teams names enable
      */
     public void startGame(View view) {
         gameTime.setBase(SystemClock.elapsedRealtime());
@@ -377,11 +379,12 @@ public class MainActivity extends AppCompatActivity {
 
         nameOfTeamA.setEnabled(false);
         nameOfTeamB.setEnabled(false);
+        enableScoreButtons();
+        start.setEnabled(false);
         isNameDisabled = true;
     }
 
-    private void setButtonsDisable() {
-        start.setEnabled(false);
+    private void disableScoreButtons() {
         out_a.setEnabled(false);
         short_hit_a.setEnabled(false);
         long_hit_a.setEnabled(false);
@@ -394,6 +397,19 @@ public class MainActivity extends AppCompatActivity {
         adv_tch_b.setEnabled(false);
     }
 
+    private void enableScoreButtons() {
+        out_a.setEnabled(true);
+        short_hit_a.setEnabled(true);
+        long_hit_a.setEnabled(true);
+        home_run_a.setEnabled(true);
+        adv_tch_a.setEnabled(true);
+        out_b.setEnabled(true);
+        short_hit_b.setEnabled(true);
+        long_hit_b.setEnabled(true);
+        home_run_b.setEnabled(true);
+        adv_tch_b.setEnabled(true);
+    }
+
     /**
      * stops Chronometer when the END button is pressed
      * displays on status bar the team that won
@@ -402,7 +418,8 @@ public class MainActivity extends AppCompatActivity {
     public void stopGame(View view) {
         gameTime.stop();
         finalStatus();
-        setButtonsDisable();
-        isGameStoped = true;
+        disableScoreButtons();
+        start.setEnabled(false);
+        isGameStopped = true;
     }
 }
