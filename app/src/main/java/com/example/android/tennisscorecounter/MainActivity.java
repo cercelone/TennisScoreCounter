@@ -70,78 +70,87 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Next methods Sets Score for Team A
-    public void outTeamA(View view) {
-        scoreOutA = scoreOutA + 1;
-        displayScoreOutA(scoreOutA);
-        scoreStatus();
+    public void setScoreForTeamA(View v) {
+
+        switch (v.getId()) {
+            case R.id.out_A_button:
+                scoreOutA = scoreOutA + 1;
+                displayScoreOutA(scoreOutA);
+                scoreStatus();
+                break;
+
+            case R.id.short_hit_A_button:
+                shortHitTeamA = shortHitTeamA + 1;
+                displayShortHitA(shortHitTeamA);
+                scoreStatus();
+                break;
+
+            case R.id.long_hit_A_button:
+                scoreTeamA = scoreTeamA + 1;
+                longHitTeamA = longHitTeamA + 1;
+                displayScoreTeamA(scoreTeamA);
+                displayLongHitA(longHitTeamA);
+                scoreStatus();
+                break;
+
+            case R.id.home_run_A_button:
+                scoreTeamA = scoreTeamA + 2;
+                homeRunA = homeRunA + 1;
+                displayScoreTeamA(scoreTeamA);
+                displayHomeRunA(homeRunA);
+                scoreStatus();
+                break;
+
+            case R.id.adv_tch_A_button:
+                scoreTeamA = scoreTeamA + 2;
+                advTouchTeamA = advTouchTeamA + 1;
+                displayScoreTeamA(scoreTeamA);
+                displayTouchAdvA(advTouchTeamA);
+                scoreStatus();
+                break;
+        }
     }
 
-    public void shortHitTeamA(View view) {
-        shortHitTeamA = shortHitTeamA + 1;
-        displayShortHitA(shortHitTeamA);
-        scoreStatus();
-    }
+    //Next method sets Score for Team B
+    public void setScoreForTeamB(View v) {
 
-    public void longHitTeamA(View view) {
-        scoreTeamA = scoreTeamA + 1;
-        longHitTeamA = longHitTeamA + 1;
-        displayScoreTeamA(scoreTeamA);
-        displayLongHitA(longHitTeamA);
-        scoreStatus();
-    }
+        switch (v.getId()) {
+            case R.id.out_B_button:
+                scoreOutB = scoreOutB + 1;
+                displayScoreOutB(scoreOutB);
+                scoreStatus();
+                break;
 
-    public void homeRunTeamA(View view) {
-        scoreTeamA = scoreTeamA + 2;
-        homeRunA = homeRunA + 1;
-        displayScoreTeamA(scoreTeamA);
-        displayHomeRunA(homeRunA);
-        scoreStatus();
-    }
+            case R.id.short_hit_B_button:
+                shortHitTeamB = shortHitTeamB + 1;
+                displayShortHitB(shortHitTeamB);
+                scoreStatus();
+                break;
 
-    public void advTouchTeamA(View view) {
-        scoreTeamA = scoreTeamA + 2;
-        advTouchTeamA = advTouchTeamA + 1;
-        displayScoreTeamA(scoreTeamA);
-        displayTouchAdvA(advTouchTeamA);
-        scoreStatus();
-    }
+            case R.id.long_hit_B_button:
+                scoreTeamB = scoreTeamB + 1;
+                longHitTeamB = longHitTeamB + 1;
+                displayScoreTeamB(scoreTeamB);
+                displayLongHitB(longHitTeamB);
+                scoreStatus();
+                break;
 
-//Next methods sets Score for Team B
+            case R.id.home_run_B_button:
+                scoreTeamB = scoreTeamB + 2;
+                homeRunB = homeRunB + 1;
+                displayScoreTeamB(scoreTeamB);
+                displayHomeRunB(homeRunB);
+                scoreStatus();
+                break;
 
-    public void outTeamB(View view) {
-        scoreOutB = scoreOutB + 1;
-        displayScoreOutB(scoreOutB);
-        scoreStatus();
-    }
-
-    public void shortHitTeamB(View view) {
-        shortHitTeamB = shortHitTeamB + 1;
-        displayShortHitB(shortHitTeamB);
-        scoreStatus();
-    }
-
-    public void longHitTeamB(View v) {
-        scoreTeamB = scoreTeamB + 1;
-        longHitTeamB = longHitTeamB + 1;
-        displayScoreTeamB(scoreTeamB);
-        displayLongHitB(longHitTeamB);
-        scoreStatus();
-    }
-
-    public void homeRunTeamB(View view) {
-        scoreTeamB = scoreTeamB + 2;
-        homeRunB = homeRunB + 1;
-        displayScoreTeamB(scoreTeamB);
-        displayHomeRunB(homeRunB);
-        scoreStatus();
-    }
-
-    public void advTouchTeamB(View view) {
-        scoreTeamB = scoreTeamB + 2;
-        advTouchTeamB = advTouchTeamB + 1;
-        displayScoreTeamB(scoreTeamB);
-        displayTouchAdvB(advTouchTeamB);
-        scoreStatus();
+            case R.id.adv_tch_B_button:
+                scoreTeamB = scoreTeamB + 2;
+                advTouchTeamB = advTouchTeamB + 1;
+                displayScoreTeamB(scoreTeamB);
+                displayTouchAdvB(advTouchTeamB);
+                scoreStatus();
+                break;
+        }
     }
 
     //This method resets the score
@@ -272,9 +281,8 @@ public class MainActivity extends AppCompatActivity {
         gameTime.setBase(SystemClock.elapsedRealtime() + currentChronometer);
 
         if (!isGameStoped) {
-                gameTime.start();
-            }
-        else {
+            gameTime.start();
+        } else {
             gameTime.setEnabled(false);
             setButtonsDisable();
         }
@@ -372,7 +380,7 @@ public class MainActivity extends AppCompatActivity {
         isNameDisabled = true;
     }
 
-    private void setButtonsDisable(){
+    private void setButtonsDisable() {
         start.setEnabled(false);
         out_a.setEnabled(false);
         short_hit_a.setEnabled(false);
@@ -385,6 +393,7 @@ public class MainActivity extends AppCompatActivity {
         home_run_b.setEnabled(false);
         adv_tch_b.setEnabled(false);
     }
+
     /**
      * stops Chronometer when the END button is pressed
      * displays on status bar the team that won

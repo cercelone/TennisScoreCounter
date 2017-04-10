@@ -201,31 +201,31 @@
                 <Button
                     android:id="@+id/out_A_button"
                     style="@style/scoreButtonsOrangeTeamA"
-                    android:onClick="outTeamA"
+                    android:onClick="setScoreForTeamA"
                     android:text="@string/out_button" />
 
                 <Button
                     android:id="@+id/short_hit_A_button"
                     style="@style/scoreButtonsWhiteTeamA"
-                    android:onClick="shortHitTeamA"
+                    android:onClick="setScoreForTeamA"
                     android:text="@string/sh_button" />
 
                 <Button
                     android:id="@+id/long_hit_A_button"
                     style="@style/scoreButtonsOrangeTeamA"
-                    android:onClick="longHitTeamA"
+                    android:onClick="setScoreForTeamA"
                     android:text="@string/lh_button" />
 
                 <Button
                     android:id="@+id/home_run_A_button"
                     style="@style/scoreButtonsWhiteTeamA"
-                    android:onClick="homeRunTeamA"
+                    android:onClick="setScoreForTeamA"
                     android:text="@string/hr_button" />
 
                 <Button
                     android:id="@+id/adv_tch_A_button"
                     style="@style/scoreButtonsOrangeTeamA"
-                    android:onClick="advTouchTeamA"
+                    android:onClick="setScoreForTeamA"
                     android:text="@string/adv_tch_button" />
 
             </LinearLayout>
@@ -238,31 +238,31 @@
                 <Button
                     android:id="@+id/out_B_button"
                     style="@style/scoreButtonsOrangeTeamB"
-                    android:onClick="outTeamB"
+                    android:onClick="setScoreForTeamB"
                     android:text="@string/out_button" />
 
                 <Button
                     android:id="@+id/short_hit_B_button"
                     style="@style/scoreButtonsWhiteTeamB"
-                    android:onClick="shortHitTeamB"
+                    android:onClick="setScoreForTeamB"
                     android:text="@string/sh_button" />
 
                 <Button
                     android:id="@+id/long_hit_B_button"
                     style="@style/scoreButtonsOrangeTeamB"
-                    android:onClick="longHitTeamB"
+                    android:onClick="setScoreForTeamB"
                     android:text="@string/lh_button" />
 
                 <Button
                     android:id="@+id/home_run_B_button"
                     style="@style/scoreButtonsWhiteTeamB"
-                    android:onClick="homeRunTeamB"
+                    android:onClick="setScoreForTeamB"
                     android:text="@string/hr_button" />
 
                 <Button
                     android:id="@+id/adv_tch_B_button"
                     style="@style/scoreButtonsOrangeTeamB"
-                    android:onClick="advTouchTeamB"
+                    android:onClick="setScoreForTeamB"
                     android:text="@string/adv_tch_button" />
             </LinearLayout>
         </LinearLayout>
