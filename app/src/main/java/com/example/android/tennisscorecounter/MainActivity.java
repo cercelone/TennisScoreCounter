@@ -68,7 +68,74 @@ public class MainActivity extends AppCompatActivity {
         textScoreTeamA = (TextView) findViewById(R.id.scoreTeamA);
         textScoreTeamB = (TextView) findViewById(R.id.scoreTeamB);
 
-        disableScoreButtons();
+        if (savedInstanceState != null) {
+            scoreTeamA = savedInstanceState.getInt("scoreA");
+            scoreTeamB = savedInstanceState.getInt("scoreB");
+            scoreOutA = savedInstanceState.getInt("outA");
+            scoreOutB = savedInstanceState.getInt("outB");
+            shortHitTeamA = savedInstanceState.getInt("shortHitA");
+            shortHitTeamB = savedInstanceState.getInt("shortHitB");
+            longHitTeamA = savedInstanceState.getInt("longHitA");
+            longHitTeamB = savedInstanceState.getInt("longHitB");
+            homeRunA = savedInstanceState.getInt("homeRunA");
+            homeRunB = savedInstanceState.getInt("homeRunB");
+            advTouchTeamA = savedInstanceState.getInt("advTchA");
+            advTouchTeamB = savedInstanceState.getInt("advTchB");
+
+            isNameDisabled = savedInstanceState.getBoolean("teamNameDisabled");
+            isGameStopped = savedInstanceState.getBoolean("gameStopped");
+
+            if (isNameDisabled) {
+                nameOfTeamA.setEnabled(false);
+                nameOfTeamB.setEnabled(false);
+            }
+//resume the chronometer
+            currentChronometer = savedInstanceState.getLong("currentChronometer");
+            gameTime.setBase(SystemClock.elapsedRealtime() + currentChronometer);
+
+            if (isGameStopped) {
+                disableScoreButtons();
+                gameTime.stop();
+            } else {
+                gameTime.start();
+            }
+
+            displayScoreTeamA(scoreTeamA);
+            displayScoreTeamB(scoreTeamB);
+            displayScoreOutA(scoreOutA);
+            displayScoreOutB(scoreOutB);
+            displayShortHitA(shortHitTeamA);
+            displayShortHitB(shortHitTeamB);
+            displayLongHitA(longHitTeamA);
+            displayLongHitB(longHitTeamB);
+            displayHomeRunA(homeRunA);
+            displayHomeRunB(homeRunB);
+            displayTouchAdvA(advTouchTeamA);
+            displayTouchAdvB(advTouchTeamB);
+            scoreStatus();
+        }
+    }
+
+    //this method saves current state, in case of screen rotation
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("scoreA", scoreTeamA);
+        outState.putInt("scoreB", scoreTeamB);
+        outState.putInt("outA", scoreOutA);
+        outState.putInt("outB", scoreOutB);
+        outState.putInt("shortHitA", shortHitTeamA);
+        outState.putInt("shortHitB", shortHitTeamB);
+        outState.putInt("longHitA", longHitTeamA);
+        outState.putInt("longHitB", longHitTeamB);
+        outState.putInt("homeRunA", homeRunA);
+        outState.putInt("homeRunB", homeRunB);
+        outState.putInt("advTchA", advTouchTeamA);
+        outState.putInt("advTchB", advTouchTeamB);
+//saves the current Chronometer time
+        outState.putLong("currentChronometer", gameTime.getBase() - SystemClock.elapsedRealtime());
+        outState.putBoolean("teamNameDisabled", isNameDisabled);
+        outState.putBoolean("gameStopped", isGameStopped);
     }
 
     //Next methods Sets Score for Team A
@@ -231,77 +298,6 @@ public class MainActivity extends AppCompatActivity {
             score = "The teams are Tied.";
             showScoreStatus(score);
         }
-    }
-
-    //this method saves current state, in case of screen rotation
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt("scoreA", scoreTeamA);
-        outState.putInt("scoreB", scoreTeamB);
-        outState.putInt("outA", scoreOutA);
-        outState.putInt("outB", scoreOutB);
-        outState.putInt("shortHitA", shortHitTeamA);
-        outState.putInt("shortHitB", shortHitTeamB);
-        outState.putInt("longHitA", longHitTeamA);
-        outState.putInt("longHitB", longHitTeamB);
-        outState.putInt("homeRunA", homeRunA);
-        outState.putInt("homeRunB", homeRunB);
-        outState.putInt("advTchA", advTouchTeamA);
-        outState.putInt("advTchB", advTouchTeamB);
-//saves the current Chronometer time
-        outState.putLong("currentChronometer", gameTime.getBase() - SystemClock.elapsedRealtime());
-        outState.putBoolean("teamNameDisabled", isNameDisabled);
-        outState.putBoolean("gameStoped", isGameStopped);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        scoreTeamA = savedInstanceState.getInt("scoreA");
-        scoreTeamB = savedInstanceState.getInt("scoreB");
-        scoreOutA = savedInstanceState.getInt("outA");
-        scoreOutB = savedInstanceState.getInt("outB");
-        shortHitTeamA = savedInstanceState.getInt("shortHitA");
-        shortHitTeamB = savedInstanceState.getInt("shortHitB");
-        longHitTeamA = savedInstanceState.getInt("longHitA");
-        longHitTeamB = savedInstanceState.getInt("longHitB");
-        homeRunA = savedInstanceState.getInt("homeRunA");
-        homeRunB = savedInstanceState.getInt("homeRunB");
-        advTouchTeamA = savedInstanceState.getInt("advTchA");
-        advTouchTeamB = savedInstanceState.getInt("advTchB");
-
-        isNameDisabled = savedInstanceState.getBoolean("teamNameDisabled");
-        isGameStopped = savedInstanceState.getBoolean("gameStoped");
-
-        if (isNameDisabled) {
-            nameOfTeamA.setEnabled(false);
-            nameOfTeamB.setEnabled(false);
-        }
-//resume the chronometer
-        currentChronometer = savedInstanceState.getLong("currentChronometer");
-        gameTime.setBase(SystemClock.elapsedRealtime() + currentChronometer);
-
-        if (!isGameStopped) {
-            gameTime.start();
-        } else {
-            gameTime.setEnabled(false);
-            disableScoreButtons();
-        }
-
-        displayScoreTeamA(scoreTeamA);
-        displayScoreTeamB(scoreTeamB);
-        displayScoreOutA(scoreOutA);
-        displayScoreOutB(scoreOutB);
-        displayShortHitA(shortHitTeamA);
-        displayShortHitB(shortHitTeamB);
-        displayLongHitA(longHitTeamA);
-        displayLongHitB(longHitTeamB);
-        displayHomeRunA(homeRunA);
-        displayHomeRunB(homeRunB);
-        displayTouchAdvA(advTouchTeamA);
-        displayTouchAdvB(advTouchTeamB);
-        scoreStatus();
     }
 
     //Next methods display score for Team A
