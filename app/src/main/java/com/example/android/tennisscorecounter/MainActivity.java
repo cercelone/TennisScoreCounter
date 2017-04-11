@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     String score;
     Chronometer gameTime;
     Button start;
+    Button end;
     Button out_a;
     Button short_hit_a;
     Button long_hit_a;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         gameTime = (Chronometer) findViewById(R.id.chronometer);
         start = (Button) findViewById(R.id.startButton);
+        end = (Button) findViewById(R.id.endButton);
         out_a = (Button) findViewById(R.id.out_A_button);
         short_hit_a = (Button) findViewById(R.id.short_hit_A_button);
         long_hit_a = (Button) findViewById(R.id.long_hit_A_button);
@@ -82,12 +84,16 @@ public class MainActivity extends AppCompatActivity {
             advTouchTeamA = savedInstanceState.getInt("advTchA");
             advTouchTeamB = savedInstanceState.getInt("advTchB");
 
+            nameOfTeamA.setText(savedInstanceState.getString("teamAName"));
+            nameOfTeamB.setText(savedInstanceState.getString("teamBName"));
+
             isNameDisabled = savedInstanceState.getBoolean("teamNameDisabled");
             isGameStopped = savedInstanceState.getBoolean("gameStopped");
 
             if (isNameDisabled) {
                 nameOfTeamA.setEnabled(false);
                 nameOfTeamB.setEnabled(false);
+                start.setEnabled(false);
             }
 //resume the chronometer
             currentChronometer = savedInstanceState.getLong("currentChronometer");
@@ -95,9 +101,12 @@ public class MainActivity extends AppCompatActivity {
 
             if (isGameStopped) {
                 disableScoreButtons();
-                gameTime.stop();
+                finalStatus();
+                start.setEnabled(false);
+                end.setEnabled(false);
             } else {
                 gameTime.start();
+                scoreStatus();
             }
 
             displayScoreTeamA(scoreTeamA);
@@ -112,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
             displayHomeRunB(homeRunB);
             displayTouchAdvA(advTouchTeamA);
             displayTouchAdvB(advTouchTeamB);
-            scoreStatus();
         }
     }
 
@@ -132,6 +140,8 @@ public class MainActivity extends AppCompatActivity {
         outState.putInt("homeRunB", homeRunB);
         outState.putInt("advTchA", advTouchTeamA);
         outState.putInt("advTchB", advTouchTeamB);
+        outState.putString("teamAName", nameOfTeamA.getText().toString());
+        outState.putString("teamBName", nameOfTeamB.getText().toString());
 //saves the current Chronometer time
         outState.putLong("currentChronometer", gameTime.getBase() - SystemClock.elapsedRealtime());
         outState.putBoolean("teamNameDisabled", isNameDisabled);
@@ -254,6 +264,8 @@ public class MainActivity extends AppCompatActivity {
         gameTime.stop();
 
         start.setEnabled(true);
+        end.setEnabled(true);
+        isGameStopped = false;
 
         nameOfTeamA.setEnabled(true);
         nameOfTeamB.setEnabled(true);
@@ -265,16 +277,16 @@ public class MainActivity extends AppCompatActivity {
      */
     private void scoreStatus() {
         if (scoreTeamA > scoreTeamB) {
-            score = nameOfTeamA.getText().toString() + " is leading.";
+            score = nameOfTeamA.getText().toString() + " " + getString(R.string.who_is_leading);
             showScoreStatus(score);
         }
         if (scoreTeamA < scoreTeamB) {
-            score = nameOfTeamB.getText().toString() + " is leading.";
+            score = nameOfTeamB.getText().toString() + " " + getString(R.string.who_is_leading);
             showScoreStatus(score);
         }
 
         if (scoreTeamA == scoreTeamB) {
-            score = "The teams are Tied.";
+            score = getString(R.string.tied);
             showScoreStatus(score);
         }
     }
@@ -286,16 +298,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void finalStatus() {
         if (scoreTeamA > scoreTeamB) {
-            score = nameOfTeamA.getText().toString() + " is the Winner.";
+            score = nameOfTeamA.getText().toString() + " " + getString(R.string.winner);
             showScoreStatus(score);
         }
         if (scoreTeamA < scoreTeamB) {
-            score = nameOfTeamB.getText().toString() + " is the Winner.";
+            score = nameOfTeamB.getText().toString() + " " + getString(R.string.winner);
             showScoreStatus(score);
         }
 
         if (scoreTeamA == scoreTeamB) {
-            score = "The teams are Tied.";
+            score = getString(R.string.tied);
             showScoreStatus(score);
         }
     }
@@ -380,6 +392,20 @@ public class MainActivity extends AppCompatActivity {
         isNameDisabled = true;
     }
 
+    /**
+     * stops Chronometer when the END button is pressed
+     * displays on status bar the team that won
+     * sets the buttons inactive
+     */
+    public void stopGame(View view) {
+        gameTime.stop();
+        finalStatus();
+        disableScoreButtons();
+        start.setEnabled(false);
+        end.setEnabled(false);
+        isGameStopped = true;
+    }
+
     private void disableScoreButtons() {
         out_a.setEnabled(false);
         short_hit_a.setEnabled(false);
@@ -404,18 +430,5 @@ public class MainActivity extends AppCompatActivity {
         long_hit_b.setEnabled(true);
         home_run_b.setEnabled(true);
         adv_tch_b.setEnabled(true);
-    }
-
-    /**
-     * stops Chronometer when the END button is pressed
-     * displays on status bar the team that won
-     * sets the buttons inactive
-     */
-    public void stopGame(View view) {
-        gameTime.stop();
-        finalStatus();
-        disableScoreButtons();
-        start.setEnabled(false);
-        isGameStopped = true;
     }
 }

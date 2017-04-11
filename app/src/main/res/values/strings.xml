@@ -24,4 +24,7 @@
     <string name="hr_detailes_right">0 Home Runs</string>
     <string name="adv_tch_detailes_right">0 Adv touch</string>
     <string name="zero">0</string>
+    <string name="who_is_leading"> is leading.</string>
+    <string name="winner"> is the Winner.</string>
+    <string name="tied">The teams are Tied.</string>
 </resources>
