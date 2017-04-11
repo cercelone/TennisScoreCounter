@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     int longHitTeamB = 0;
     int advTouchTeamA = 0;
     int advTouchTeamB = 0;
-    long currentChronometer;
+    long currentChronometer, stoppedTime;
     String score;
     Chronometer gameTime;
     Button start;
@@ -97,14 +97,16 @@ public class MainActivity extends AppCompatActivity {
             }
 //resume the chronometer
             currentChronometer = savedInstanceState.getLong("currentChronometer");
-            gameTime.setBase(SystemClock.elapsedRealtime() + currentChronometer);
+            stoppedTime = savedInstanceState.getLong("stoppedTime");
 
             if (isGameStopped) {
                 disableScoreButtons();
                 finalStatus();
                 start.setEnabled(false);
                 end.setEnabled(false);
+                gameTime.setBase(SystemClock.elapsedRealtime() + stoppedTime);
             } else {
+                gameTime.setBase(SystemClock.elapsedRealtime() + currentChronometer);
                 gameTime.start();
                 scoreStatus();
             }
@@ -144,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
         outState.putString("teamBName", nameOfTeamB.getText().toString());
 //saves the current Chronometer time
         outState.putLong("currentChronometer", gameTime.getBase() - SystemClock.elapsedRealtime());
+        outState.putLong("stoppedTime", stoppedTime);
+
         outState.putBoolean("teamNameDisabled", isNameDisabled);
         outState.putBoolean("gameStopped", isGameStopped);
     }
@@ -398,6 +402,7 @@ public class MainActivity extends AppCompatActivity {
      * sets the buttons inactive
      */
     public void stopGame(View view) {
+        stoppedTime = gameTime.getBase() - SystemClock.elapsedRealtime();
         gameTime.stop();
         finalStatus();
         disableScoreButtons();
